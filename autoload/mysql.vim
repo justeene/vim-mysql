@@ -1,4 +1,4 @@
-python << EOF
+python3 << EOF
 import os
 import json
 import vim
@@ -51,12 +51,12 @@ function! mysql#RunSqlVisual(env)
     normal! `<v`>y
     let b:sql = @@
     let b:sql = shellescape(b:sql)
-    silent exec('py run("'. a:env . '","' . b:sql . '")')
+    silent exec('pyx run("'. a:env . '","' . b:sql . '")')
 endfunction
 
 function! mysql#RunSqlLine(env)
     let b:sql = getline(line('.'))
-    exec('py run("'. a:env . '","' . b:sql . '")')
+    exec('pyx run("'. a:env . '","' . b:sql . '")')
 endfunction
 
 
