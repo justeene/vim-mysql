@@ -1,5 +1,7 @@
 # mysql.vim
 
+原版的脚本是python2的，改成支持python3
+
 mysql.vim 是可以在 Vim 中快速运行 Mysql 命令的插件
 
 <!-- more -->
