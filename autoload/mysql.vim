@@ -2,7 +2,7 @@ python3 << EOF
 import os
 import json
 import vim
-import commands
+import subprocess
 def run(env, sql):
     cur_buf = vim.current.buffer
     if 'prod' in str(cur_buf):
@@ -12,7 +12,8 @@ def run(env, sql):
     sql = sql.replace('`', '\`')
     sql = sql.replace("'\''", "'")
     cmd = 'mysql_run {} "{}"'.format(env, sql)
-    s, msg = commands.getstatusoutput(cmd)
+    print(cmd)
+    s, msg = subprocess.getstatusoutput(cmd)
 
     show_list = msg.split('\n')[15:-3]
     show_msg = '\n'.join(show_list)
@@ -51,7 +52,7 @@ function! mysql#RunSqlVisual(env)
     normal! `<v`>y
     let b:sql = @@
     let b:sql = shellescape(b:sql)
-    silent exec('pyx run("'. a:env . '","' . b:sql . '")')
+    silent exec('py run("'. a:env . '","' . b:sql . '")')
 endfunction
 
 function! mysql#RunSqlLine(env)
